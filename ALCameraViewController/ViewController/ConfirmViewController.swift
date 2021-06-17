@@ -27,6 +27,7 @@ public class ConfirmViewController: UIViewController {
 	
     var croppingParameters: CroppingParameters {
         didSet {
+            cropOverlay.isSquarable = croppingParameters.squarableCrop
             cropOverlay.isResizable = croppingParameters.allowResizing
             cropOverlay.minimumSize = croppingParameters.minimumSize
         }
@@ -185,6 +186,7 @@ public class ConfirmViewController: UIViewController {
         cropOverlay.isHidden = !croppingParameters.isEnabled
         cropOverlay.isResizable = croppingParameters.allowResizing
         cropOverlay.isMovable = croppingParameters.allowMoving
+        cropOverlay.isSquarable = croppingParameters.squarableCrop
         cropOverlay.minimumSize = croppingParameters.minimumSize
     }
 	

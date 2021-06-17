@@ -34,6 +34,7 @@ internal class CropOverlay: UIView {
         return cornerButtonWidth * self.outterGapRatio
     }
 
+    var isSquarable: Bool = false
     var isResizable: Bool = false
     var isMovable: Bool = false
     var minimumSize: CGSize = CGSize.zero
@@ -257,12 +258,10 @@ internal class CropOverlay: UIView {
                     newFrame = CGRect.zero
                 }
 
-                let minimumFrame = CGRect(x: newFrame.origin.x,
-                                          y: newFrame.origin.y,
-                                          width: max(newFrame.size.width,
-                                                     minimumSize.width + 2 * outterGap),
-                                          height: max(newFrame.size.height,
-                                                      minimumSize.height + 2 * outterGap))
+                var minimumFrame = CGRect(x: newFrame.origin.x, y: newFrame.origin.y, width: max(newFrame.size.width, minimumSize.width + 2 * outterGap), height: max(newFrame.size.height, minimumSize.height + 2 * outterGap))
+                if isSquarable {
+                    minimumFrame = CGRect(x: newFrame.origin.x, y: newFrame.origin.y, width: max(minimumFrame.size.height, minimumFrame.size.width), height: max(minimumFrame.size.height, minimumFrame.size.width))
+                }
 
                 gestureRecognizer.setTranslation(CGPoint.zero, in: self)
                 
